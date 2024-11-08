@@ -1,0 +1,66 @@
+# App
+juice-shop/node_modules/
+juice-shop/juiceshop.sqlite
+juice-shop/order_*.pdf
+juice-shop/app/
+juice-shop/!frontend/src/app
+juice-shop/uploads/complaints/*.*
+juice-shop/!uploads/complaints/.gitkeep
+juice-shop/ftp/legal.md
+juice-shop/package-lock.json
+juice-shop/i18n/*.json
+juice-shop/i18n/*.invalid
+juice-shop/!frontend/src/assets/i18n/*.json
+juice-shop/!data/static/i18n/*.json
+juice-shop/data/chatbot/*.*
+juice-shop/!data/chatbot/.gitkeep
+juice-shop//data/juiceshop.sqlite-journal
+
+# Build
+juice-shop/.nyc_output/
+juice-shop/.sass-cache/
+juice-shop/build/
+juice-shop/cache/
+juice-shop/dist/
+juice-shop/logs/
+juice-shop/vagrant/.vagrant/
+juice-shop/*.orig
+juice-shop/*.out
+juice-shop/*.log
+juice-shop/JSON
+juice-shop/JSON.map
+juice-shop/frontend/src/**/*.js
+juice-shop//bom.json
+juice-shop//bom.xml
+
+# IDEs
+.idea/
+.vscode/
+out/
+*.eml
+*.iml
+*.iws
+*.swp
+
+# Branch ghpages
+juice-shop/assets/
+juice-shop/!frontend/src/assets/
+
+juice-shop/# Custom configuration files
+juice-shop/config/*.yml
+juice-shop/!config/addo.yml
+juice-shop/!config/bodgeit.yml
+juice-shop/!config/ctf.yml
+juice-shop/!config/fbctf.yml
+juice-shop/!config/default.yml
+juice-shop/!config/juicebox.yml
+juice-shop/!config/quiet.yml
+juice-shop/!config/test.yml
+juice-shop/!config/7ms.yml
+juice-shop/!config/mozilla.yml
+juice-shop/!config/unsafe.yml
+juice-shop/!config/tutorial.yml
+juice-shop/!config/oss.yml
+
+# System Files
+.DS_Store

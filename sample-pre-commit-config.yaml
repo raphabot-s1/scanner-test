@@ -1,0 +1,10 @@
+repos:
+  - repo: local
+    hooks:
+      - id: s1-cns-cli
+        name: Checking for hardcoded secrets in staging area
+        entry: s1-cns-cli
+        language: system
+        args: ['--verbose', 'scan', 'secret', '-d', './', '--pre-commit']
+        pass_filenames: false
+        verbose: true
