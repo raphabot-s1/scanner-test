@@ -82,7 +82,7 @@ jobs:
         if: steps.iac-detector.outcome == 'failure'
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: secret.sarif
+          sarif_file: iac.sarif
       
       - name: Fail in case of Scan detecting issues
         if: steps.iac-detector.outcome == 'failure'
@@ -117,7 +117,7 @@ jobs:
         if: steps.vuln-detector.outcome == 'failure'
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: secret.sarif
+          sarif_file: vuln.sarif
       
       - name: Fail in case of Scan detecting issues
         if: steps.vuln-detector.outcome == 'failure'
