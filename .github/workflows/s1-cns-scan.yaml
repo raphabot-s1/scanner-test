@@ -69,8 +69,8 @@ jobs:
         run: git config --global --add safe.directory $PWD
 
       - name: Run Secret Detector
-        id: secret-detector
-        run:  s1-cns-cli --output-format SARIF --output-file iac.sarif scan secret -d $PWD --pull-request origin/$SRC $DEST --publish-result --repo-full-name $REPO_FULL_NAME  --repo-url $REPO_URL/$REPO_FULL_NAME || true
+        id: iac-detector
+        run:  s1-cns-cli --output-format SARIF --output-file iac.sarif scan secret -d $PWD --pull-request origin/$SRC $DEST --publish-result --repo-full-name $REPO_FULL_NAME  --repo-url $REPO_URL/$REPO_FULL_NAME
         env:
           DEST: ${{ github.event.pull_request.base.sha }}
           SRC: ${{ github.event.pull_request.head.ref }}
@@ -78,9 +78,14 @@ jobs:
           REPO_URL: ${{ github.server_url }}
 
       - name: Publish Results as SARIF
+        if: steps.iac-detector.outcome == 'failure'
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: iac.sarif
+          sarif_file: secret.sarif
+      
+      - name: Fail in case of Scan detecting issues
+        if: steps.iac-detector.outcome == 'failure'
+        run: exit 1
 
   vuln-scanning:
     runs-on: ubuntu-latest
@@ -103,9 +108,15 @@ jobs:
         run: git config --global --add safe.directory $PWD
 
       - name: Run Vulnerability Scanner
-        run:  s1-cns-cli  --output-format SARIF --output-file vuln.sarif scan vuln -d $PWD || true
+        id: vuln-detector
+        run:  s1-cns-cli  --output-format SARIF --output-file vuln.sarif scan vuln -d $PWD
 
       - name: Publish Results as SARIF
+        if: steps.vuln-detector.outcome == 'failure'
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: vuln.sarif
+          sarif_file: secret.sarif
+      
+      - name: Fail in case of Scan detecting issues
+        if: steps.vuln-detector.outcome == 'failure'
+        run: exit 1
