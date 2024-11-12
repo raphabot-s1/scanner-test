@@ -30,8 +30,8 @@ jobs:
 
       - name: Run Secret Detector
         id: secret-detector
-        run:  s1-cns-cli --output-format SARIF --output-file secret.sarif scan secret -d $PWD --pull-request origin/$SRC $DEST --publish-result --repo-full-name $REPO_FULL_NAME  --repo-url $REPO_URL/$REPO_FULL_NAME
         continue-on-error: true
+        run:  s1-cns-cli --output-format SARIF --output-file secret.sarif scan secret -d $PWD --pull-request origin/$SRC $DEST --publish-result --repo-full-name $REPO_FULL_NAME  --repo-url $REPO_URL/$REPO_FULL_NAME
         env:
           DEST: ${{ github.event.pull_request.base.sha }}
           SRC: ${{ github.event.pull_request.head.ref }}
@@ -70,6 +70,7 @@ jobs:
 
       - name: Run Secret Detector
         id: iac-detector
+        continue-on-error: true
         run:  s1-cns-cli --output-format SARIF --output-file iac.sarif scan secret -d $PWD --pull-request origin/$SRC $DEST --publish-result --repo-full-name $REPO_FULL_NAME  --repo-url $REPO_URL/$REPO_FULL_NAME
         env:
           DEST: ${{ github.event.pull_request.base.sha }}
@@ -109,6 +110,7 @@ jobs:
 
       - name: Run Vulnerability Scanner
         id: vuln-detector
+        continue-on-error: true
         run:  s1-cns-cli  --output-format SARIF --output-file vuln.sarif scan vuln -d $PWD
 
       - name: Publish Results as SARIF
