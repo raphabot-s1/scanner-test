@@ -15,7 +15,7 @@ jobs:
       options: --entrypoint ""
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.ref }}
           fetch-depth: 0
@@ -30,7 +30,8 @@ jobs:
 
       - name: Run Secret Detector
         id: secret-detector
-        run:  s1-cns-cli --output-format SARIF --output-file secret.sarif scan secret -d $PWD --pull-request origin/$SRC $DEST --publish-result --repo-full-name $REPO_FULL_NAME  --repo-url $REPO_URL/$REPO_FULL_NAME || true
+        run:  s1-cns-cli --output-format SARIF --output-file secret.sarif scan secret -d $PWD --pull-request origin/$SRC $DEST --publish-result --repo-full-name $REPO_FULL_NAME  --repo-url $REPO_URL/$REPO_FULL_NAME
+        continue-on-error: true
         env:
           DEST: ${{ github.event.pull_request.base.sha }}
           SRC: ${{ github.event.pull_request.head.ref }}
@@ -38,9 +39,14 @@ jobs:
           REPO_URL: ${{ github.server_url }}
 
       - name: Publish Results as SARIF
+        if: steps.secret-detector.outcome == 'failure'
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: secret.sarif
+      
+      - name: Fail in case of Scan detecting issues
+        if: steps.secret-detector.outcome == 'failure'
+        run: exit 1
 
   iac-scanning:
     runs-on: ubuntu-latest
@@ -49,7 +55,7 @@ jobs:
       options: --entrypoint ""
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.ref }}
           fetch-depth: 0
@@ -83,7 +89,7 @@ jobs:
       options: --entrypoint ""
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.ref }}
           fetch-depth: 0
