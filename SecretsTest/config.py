@@ -5,12 +5,19 @@
 # AWS
 ## AWS Access Key ID
 AWS_ACCESS_KEY_ID = 'AKIAIWSXFHRM7F6Z3NWQ'
+NOT_A_KEY_DONT_WORRY = 'ASIA2OAJTQGDCBXXJRKQ'
 
 ## AWS Secret Access Key
 AWS_ACCESS_SECRET_KEY = 'UpUbsQANRHLf2uuQ7QOlNXPbbtV5fmseW/GgT5D/'
 
 ## AWS MWS Auth Token
 MWS_AUTH_TOKEN = 'amzn.mws.f90f3ce6-9b5a-26a7-9a87-4ff8052be2ec'
+
+## Generated using canarytokens.org
+aws_access_key_id = 'AKIAT4GVSAXXHZMCAZJA'
+aws_secret_access_key = '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'
+output = 'json'
+region = 'us-east-2'
 
 # Google
 ## GCP Credentials
@@ -249,3 +256,4 @@ PUBLIC_KEY_SSH = 'AAAAB3NzaC1yc2EAAAADAQABAAAAgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvK
 
 ## Public key file
 PUBLIC_KEY_FILE = '-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0\nFPqri0cb2JZfXJ/DgYSF6vUpwmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/\n3j+skZ6UtW+5u09lHNsj6tQ51s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQAB\n-----END PUBLIC KEY-----'
+
