@@ -235,7 +235,6 @@ SOURCE_6 = '897f3b11-72f2-4c6f-9a9d-4750cdc609c6'
 # Generic api key
 SOURCE_7 = '7340ad40-09b3-11eb-adc1-0242ac120002'
 
-
 '''False Positives'''
 
 # Github Hashes
